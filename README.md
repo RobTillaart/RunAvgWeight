@@ -104,6 +104,8 @@ Needs more than one element to be calculable.
 
 #### Should
 
+- elaborate unit test
+
 #### Could
 
 #### Wont

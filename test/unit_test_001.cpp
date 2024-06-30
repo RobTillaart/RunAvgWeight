@@ -2,9 +2,9 @@
 //    FILE: unit_test_001.cpp
 //  AUTHOR: Rob Tillaart
 // VERSION: 0.1.0
-//    DATE: 2020-12-03
-// PURPOSE: unit tests for runningAverage
-//          https://github.com/RobTillaart/RunningAverage
+//    DATE: 2024-06-30
+// PURPOSE: unit tests for RunAvgWeight
+//          https://github.com/RobTillaart/RunAvgWeight
 //
 
 
@@ -33,12 +33,12 @@
 #include <ArduinoUnitTests.h>
 
 #include "Arduino.h"
-#include "RunningAverage.h"
+#include "RunAvgWeight.h"
 
 
 unittest_setup()
 {
-  fprintf(stderr, "RUNNINGAVERAGE_LIB_VERSION: %s\n", (char *) RUNNINGAVERAGE_LIB_VERSION);
+  fprintf(stderr, "RUNAVGWEIGHT_LIB_VERSION: %s\n", (char *) RUNAVGWEIGHT_LIB_VERSION);
 }
 
 
@@ -49,7 +49,7 @@ unittest_teardown()
 
 unittest(test_zero_elements)
 {
-  RunningAverage myRA(10);
+  RunAvgWeight myRA(10);
   myRA.clear();
 
   int size = myRA.getSize();
@@ -65,7 +65,7 @@ unittest(test_zero_elements)
 
 unittest(test_min_max)
 {
-  RunningAverage myRA(10);
+  RunAvgWeight myRA(10);
   myRA.clear();
 
   for (int i = -5; i < 6; i++)
@@ -87,7 +87,7 @@ unittest(test_min_max)
 
 unittest(test_buffer_full)
 {
-  RunningAverage myRA(10);
+  RunAvgWeight myRA(10);
   myRA.clear();
   assertFalse(myRA.bufferIsFull());
 
@@ -104,7 +104,7 @@ unittest(test_buffer_full)
 
 unittest(test_large)
 {
-  RunningAverage myRA(300);
+  RunAvgWeight myRA(300);
   myRA.clear();
   assertFalse(myRA.bufferIsFull());
 
@@ -116,60 +116,6 @@ unittest(test_large)
 
   myRA.addValue(42);
   assertTrue(myRA.bufferIsFull());
-}
-
-
-unittest(test_partial)
-{
-  RunningAverage myRA(100);
-  myRA.clear();
-  assertFalse(myRA.bufferIsFull());
-
-  myRA.setPartial(10);
-  for (int i = 0; i < 100; i++)
-  {
-    myRA.addValue(i);
-  }
-  assertEqualFloat(94.5, myRA.getAverage(), 0.001);
-
-  myRA.setPartial(20);
-  for (int i = 0; i < 100; i++)
-  {
-    myRA.addValue(i);
-  }
-  assertEqualFloat(89.5, myRA.getAverage(), 0.001);
-}
-
-
-unittest(test_last)
-{
-  RunningAverage myRA(300);
-  myRA.clear();
-  assertFalse(myRA.bufferIsFull());
-
-  for (int i = 0; i < 1000; i++)
-  {
-    myRA.addValue(i);
-  }
-  assertNAN(myRA.getMinInBufferLast(0));
-  assertNAN(myRA.getAverageLast(0));
-  assertNAN(myRA.getMaxInBufferLast(0));
-
-  assertEqualFloat(999.0, myRA.getMinInBufferLast(1), 0.001);
-  assertEqualFloat(999.0, myRA.getAverageLast(1), 0.001);
-  assertEqualFloat(999.0, myRA.getMaxInBufferLast(1), 0.001);
-
-  assertEqualFloat(990.0, myRA.getMinInBufferLast(10), 0.001);
-  assertEqualFloat(994.5, myRA.getAverageLast(10), 0.001);
-  assertEqualFloat(999.0, myRA.getMaxInBufferLast(10), 0.001);
-
-  assertEqualFloat(900.0, myRA.getMinInBufferLast(100), 0.001);
-  assertEqualFloat(949.5, myRA.getAverageLast(100), 0.001);
-  assertEqualFloat(999.0, myRA.getMaxInBufferLast(100), 0.001);
-
-  assertEqualFloat(700.0, myRA.getMinInBufferLast(1000), 0.001);
-  assertEqualFloat(849.5, myRA.getAverageLast(1000), 0.001);
-  assertEqualFloat(999.0, myRA.getMaxInBufferLast(1000), 0.001);
 }
 
 
