@@ -15,6 +15,7 @@ getAverage	KEYWORD2
 getFastAverage	KEYWORD2
 getStandardDeviation	KEYWORD2
 getStandardError	KEYWORD2
+getCoefficientOfVariation	KEYWORD2
 
 getMin	KEYWORD2
 getMax	KEYWORD2
