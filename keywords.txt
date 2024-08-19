@@ -23,14 +23,13 @@ getMinInBuffer	KEYWORD2
 getMaxInBuffer	KEYWORD2
 
 bufferIsFull	KEYWORD2
+getSize	KEYWORD2
+getCount	KEYWORD2
 
 getElementValue	KEYWORD2
 getElementWeight	KEYWORD2
 getSumValues	KEYWORD2
 getSumWeights	KEYWORD2
-
-getSize	KEYWORD2
-getCount	KEYWORD2
 
 
 # Instances (KEYWORD2)

@@ -36,6 +36,10 @@ possibly introduces an ever increasing error.
 In tests with **RunningAverage** library (with equal weights), adding up to 1500000 numbers 
 this error was always small. Still you need to be aware of this limit.
 
+### 0.2.0 breaking change
+
+Fixed #6 by fixing **clear()**, previous versions are now obsolete.
+
 
 #### Related
 
@@ -100,10 +104,14 @@ It indicates if the distribution is relative small ( < 1) or relative wide ( > 1
 Note it has no meaning when the average is zero (or close to zero).
 - **float getMin()** returns minimum value since last **clear()**. This value does not need 
 to be in the internal buffer any more. Useful for graphing long term minima.
+Note the returned minimum is **unweighted.**
 - **float getMax()** returns maximum value since last **clear()**. This value does not need 
 to be in the internal buffer any more. Useful for graphing long term maxima.
+Note the returned maximum is **unweighted.**
 - **float getMinInBuffer()** returns minimum value in the internal buffer.
+Note the returned minimum is **unweighted.**
 - **float getMaxInBuffer()** returns maximum value in the internal buffer.
+Note the returned maximum is **unweighted.**
 
 
 ### Admin functions
