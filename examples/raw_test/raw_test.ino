@@ -15,7 +15,7 @@ int samples = 0;
 
 void setup(void)
 {
-  while(1);  //  for Leonardo a.o.
+  while(!Serial);  //  for Leonardo a.o.
   Serial.begin(115200);
   Serial.println();
   Serial.println(__FILE__);

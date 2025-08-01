@@ -16,7 +16,7 @@ volatile float f;
 
 void setup(void)
 {
-  while(1);  //  for Leonardo a.o.
+  while (!Serial); //  for Leonardo a.o.
   Serial.begin(115200);
   Serial.println();
   Serial.println(__FILE__);
@@ -92,21 +92,21 @@ void setup(void)
   Serial.println(f, 4);
   delay(100);
 
-/*
-  Serial.println();
-  for (int i = 0; i < myRA.getSize(); i++)
-  {
-    Serial.print(i);
-    Serial.print("\t");
-    Serial.println(myRA.getElementValue(i));
-  }
+  /*
+    Serial.println();
+    for (int i = 0; i < myRA.getSize(); i++)
+    {
+      Serial.print(i);
+      Serial.print("\t");
+      Serial.println(myRA.getElementValue(i));
+    }
+  */
   Serial.println("\ndone...");
 }
-*/
+
 
 void loop(void)
 {
-
 }
 
 
